@@ -58,7 +58,7 @@ library
 
   -- LANGUAGE extensions used by modules in this package.
   -- other-extensions:
-
+  ghc-options: -Wall
   -- Other library packages from which modules are imported.
   build-depends:       base ^>=4.12.0.0
                        ,bifunctors ^>= 5.5.4
