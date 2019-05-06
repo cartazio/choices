@@ -25,3 +25,10 @@ data HSumT :: ( k -> * ) -> [k] -> *  where
 newtype HChoice as = HChoice (forall r . Pick as r  -> r )
 
 newtype HChoiceT f as = HChoiceT (forall r . Pick as r -> f r )
+
+-- | this looks kinda like a profunctor sortah?
+newtype Handled f g res source   =  ItsHandled  {unhandle :: f source -> g res}
+
+caseT :: HSumT f ls -> HChoiceT (Handled f g res) ls -> g res
+caseT (HExistsT Absurd _) (HChoiceT f) =  (error "impossible case!") --- error "absurd proofs happened here" -- or just do
+caseT (HExistsT pf val) (HChoiceT f) =  unhandle (f pf) val
