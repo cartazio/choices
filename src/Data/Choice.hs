@@ -9,5 +9,5 @@ data Choose a b c where
     CRight :: Choose a b b
 
 newtype Choice a b = Choice (forall r . Choose  a b r -> r)
-newtype ChoiceT t a b = Choice (forall r . Choose (t a) (t b) r -> r)
+newtype ChoiceT t a b = ChoiceT (forall r . Choose (t a) (t b) r -> r)
 
